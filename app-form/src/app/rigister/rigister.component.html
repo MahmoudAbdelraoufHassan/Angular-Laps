@@ -1,0 +1,58 @@
+<form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+    <div class="mb-3" >
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input type="text" class="form-control" id="Name" aria-describedby="emailHelp" formControlName = "Name">
+      @if(registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched){
+        <div id="emailHelp" class="form-text text-danger">
+            @if(registerForm.controls['Name'].errors?.["required"]){
+                <p>please Enter Your Name</p>
+            }
+        </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+      @if(registerForm.controls['email'].invalid && registerForm.controls['email'].touched){
+        <div id="emailHelp" class="form-text text-danger">
+            @if(registerForm.controls['email'].errors?.["required"]){
+                <p>please Enter Your Email</p>
+            }
+            @if(registerForm.controls['email'].errors?.["pattern"]){
+                <p>please Enter Valid Email</p>
+            }
+            
+        </div>
+        }
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">UserName</label>
+      <input type="text" class="form-control" id="userName" aria-describedby="emailHelp" formControlName="userName">
+      @if(registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched){
+        <div id="emailHelp" class="form-text text-danger">
+            @if(registerForm.controls['userName'].errors?.["required"]){
+                <p>please Enter Your userName</p>
+            }
+        </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="password" formControlName="password">
+      @if(registerForm.controls['password'].touched){
+        <div id="emailHelp" class="form-text text-danger">
+            @if(registerForm.controls['password'].errors?.["required"]){
+                <p>please Enter password</p>
+            }
+            @if(registerForm.controls['password'].errors?.["minlength"]){
+                <p>min lenth : 8</p>
+            }
+            @if(registerForm.controls['password'].errors?.["pattern"]){
+                <p>enter valid password</p>
+            }
+        </div>
+      }
+    </div>
+    <button type="submit" class="btn btn-danger w-100" >Register</button>
+    <p>check password: {{pass}}</p>
+</form>

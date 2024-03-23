@@ -1,0 +1,31 @@
+<form #loginForm ="ngForm" (ngSubmit)="handleSubmit(loginForm)">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name = "email" ngModel #email = "ngModel" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required>
+          @if(loginForm.submitted && email.invalid){
+            <div id="emailHelp" class="form-text text-danger">
+                @if(email.errors?.["required"]){
+                    <p>please Enter Your Email</p>
+                }
+                @if(email.errors?.["pattern"] ){
+                    <p>please Enter Valid Email</p>
+                }
+               
+            </div>
+
+          }
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password" ngModel #password="ngModel" required>
+          @if(loginForm.submitted && email.invalid){
+              <div id="emailHelp" class="form-text text-danger">
+                  @if(password.errors?.["required"] &&  loginForm.submitted){
+                      <p>Password required</p>
+                    }
+                </div>
+            }
+
+        </div>
+        <button type="submit" class="btn btn-primary w-100" >Login</button>
+</form>
